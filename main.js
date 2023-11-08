@@ -16,10 +16,14 @@ const scene = new THREE.Scene();
 
 
 // Adding directional light to the scene
-const pointLight = new THREE.PointLight(0xffffff, 200, 100); // white light with full intensity
-pointLight.position.set(10, 10, 20); // Position of the light
-pointLight.intensity = 1000;
-scene.add(pointLight);
+const light = new THREE.SpotLight(0xffffff, 10, 40); // white light with full intensity
+// const light = new THREE.PointLight(0xffffff, 10, 40); // white light with full intensity
+light.position.set(10, 10, 20); // Position of the light
+light.intensity = 1000;
+const lightHelper = new THREE.SpotLightHelper(light);
+scene.add(lightHelper);
+scene.add(light);
+
 
 // camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, .01, 1000);
@@ -69,7 +73,7 @@ renderer.render(scene, camera);
 // controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.enablePan = false;
+// controls.enablePan = false;
 controls.enableZoom = false;
 controls.autoRotate = true;
 controls.autoRotateSpeed = 5;
